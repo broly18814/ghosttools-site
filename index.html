@@ -1,1 +1,240 @@
-<html><body><h1>GhostTools</h1><p>Coming soon...</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostTools - Free Online Tools</title>
+    <meta name="description" content="Free browser-based tools for developers, designers, and everyone. No signup, no ads, no tracking.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #ffffff;
+            --bg-card: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --bg-card: #1e293b;
+                --text: #f1f5f9;
+                --text-muted: #94a3b8;
+                --border: #334155;
+                --shadow: 0 1px 3px rgba(0,0,0,0.3);
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .tool-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .search-bar {
+            max-width: 500px;
+            margin: 30px auto 20px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--bg-card);
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-bar input:focus { border-color: var(--accent); }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding-bottom: 60px;
+        }
+        .tool-card {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-decoration: none;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .tool-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .tool-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.8rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GhostTools</h1>
+            <p>Free Online Tools</p>
+            <span class="tool-count">3 tools available</span>
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search tools..." autocomplete="off">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="converter">Converters</button>
+                <button class="filter-btn" data-filter="calculator">Calculators</button>
+                <button class="filter-btn" data-filter="generator">Generators</button>
+                <button class="filter-btn" data-filter="formatter">Formatters</button>
+                <button class="filter-btn" data-filter="checker">Checkers</button>
+                <button class="filter-btn" data-filter="other">Other</button>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="tools-grid" id="tools-grid">
+            
+        <a href="tools/ai-pr-time-analyzer/" class="tool-card" data-category="checker">
+            <span class="category-badge" style="background:#ef4444">checker</span>
+            <h3>AI PR Time Analyzer</h3>
+            <p>Analyzes time spent on AI-generated PR reviews and identifies synthetic vulnerabilities</p>
+        </a>
+
+        <a href="tools/secure-document-processor/" class="tool-card" data-category="other">
+            <span class="category-badge" style="background:#6b7280">other</span>
+            <h3>Secure Document Processor</h3>
+            <p>Securely process sensitive documents without uploading to the internet</p>
+        </a>
+
+        <a href="tools/pst-to-pdf-converter/" class="tool-card" data-category="converter">
+            <span class="category-badge" style="background:#3b82f6">converter</span>
+            <h3>PST to PDF Converter</h3>
+            <p>Convert PST email files to PDF format</p>
+        </a>
+        </div>
+        <div class="empty-state" id="empty-state" style="display:none;">
+            <p>No tools match your search.</p>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>GhostTools - Built with automation, used by humans.</p>
+        </div>
+    </footer>
+    <script>
+        const searchInput = document.getElementById('search');
+        const grid = document.getElementById('tools-grid');
+        const emptyState = document.getElementById('empty-state');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = grid.querySelectorAll('.tool-card');
+        let activeFilter = 'all';
+
+        function filterCards() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visible = 0;
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const cat = card.dataset.category;
+                const matchesSearch = !query || text.includes(query);
+                const matchesFilter = activeFilter === 'all' || cat === activeFilter;
+                const show = matchesSearch && matchesFilter;
+                card.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+            emptyState.style.display = visible === 0 ? '' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterCards);
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                filterCards();
+            });
+        });
+    </script>
+</body>
+</html>
