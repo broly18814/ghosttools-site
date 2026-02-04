@@ -52,178 +52,242 @@
             <!-- AdSense slot -->
         </div>
         <div class="gt-body">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Document Processor</title>
-    <style>
+            <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #007bff;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1e1e1e;
-                --text-color: #ffffff;
-                --accent-color: #6c757d;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 0 10px;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
         }
 
         .container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        header {
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0 0 10px;
-        }
-
-        header p {
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        .input-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        input[type="file"] {
-            padding: 10px;
-            font-size: 1em;
             width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+            max-width: 600px;
+            background-color: var(--surface);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text);
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .error {
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
         }
 
         button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: var(--accent-color);
+            background-color: var(--accent);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s;
-            width: 100%;
+            transition: all 0.2s ease;
+            flex: 1;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #585ce0;
         }
 
-        .output-section {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            min-height: 100px;
+        button:active {
+            transform: translateY(1px);
         }
 
-        pre {
+        .output-container {
+            margin-top: 24px;
+            background-color: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            min-height: 80px;
+            padding: 16px;
+            font-size: 14px;
             white-space: pre-wrap;
-            word-wrap: break-word;
-            margin: 0;
-            font-family: monospace;
-            overflow-x: hidden;
-            width: 100%;
+            word-break: break-word;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.8em;
-            color: #888;
+        .copy-button {
+            margin-top: 12px;
+            background-color: rgba(99, 102, 241, 0.2);
+            padding: 8px 16px;
+            font-size: 13px;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
-
-            input[type="file"], button {
-                font-size: 0.95em;
-            }
+        .copy-button:hover {
+            background-color: rgba(99, 102, 241, 0.3);
         }
 
-        @media (max-width: 375px) {
-            .input-section {
+        @media (max-width: 480px) {
+            .button-group {
                 flex-direction: column;
-            }
-
-            .output-section {
-                padding: 10px;
-            }
-
-            pre {
-                font-size: 0.95em;
             }
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Secure Document Processor</h1>
-            <p>Process sensitive documents securely without uploading to the internet</p>
-        </header>
-        <main>
-            <section class="input-section">
-                <input type="file" id="fileInput" accept=".txt,.doc,.docx,.pdf">
-                <button id="processBtn">Process Document</button>
-            </section>
-            <section class="output-section">
-                <h2>Processed Document</h2>
-                <pre id="outputContent">No file processed yet.</pre>
-            </section>
-        </main>
-        <footer>
-            &copy; 2023 Secure Document Processor. All rights reserved.
-        </footer>
+<div class="container">
+        <h1>Secure Document Processor</h1>
+        <p class="description">Process sensitive documents without uploading to the internet</p>
+        
+        <div class="input-group">
+            <label for="document-input">Document Content</label>
+            <textarea id="document-input" placeholder="Enter your document content here..."></textarea>
+            <div id="error-message" class="error" aria-live="polite"></div>
+        </div>
+        
+        <div class="button-group">
+            <button id="process-button">Process Document</button>
+            <button id="clear-button">Clear</button>
+        </div>
+        
+        <div class="output-container" id="output">
+            <p>Processed output will appear here...</p>
+        </div>
+        
+        <button class="copy-button" id="copy-button">Copy to Clipboard</button>
     </div>
 
     <script>
-        document.getElementById('processBtn').addEventListener('click', function() {
-            const fileInput = document.getElementById('fileInput');
-            const outputContent = document.getElementById('outputContent');
-            
-            if (fileInput.files.length === 0) {
-                outputContent.textContent = 'Please select a file first.';
-                return;
+        document.addEventListener('DOMContentLoaded', function() {
+            const documentInput = document.getElementById('document-input');
+            const processButton = document.getElementById('process-button');
+            const clearButton = document.getElementById('clear-button');
+            const outputElement = document.getElementById('output');
+            const errorMessage = document.getElementById('error-message');
+            const copyButton = document.getElementById('copy-button');
+
+            // Process document function
+            function processDocument() {
+                const input = documentInput.value.trim();
+                
+                // Clear previous error
+                errorMessage.textContent = '';
+                
+                // Validate input
+                if (!input) {
+                    errorMessage.textContent = 'Please enter document content';
+                    return;
+                }
+                
+                // Simulate document processing
+                try {
+                    // In a real app, this would be actual processing logic
+                    const processedContent = `[PROCESSED] ${input.toUpperCase()}`;
+                    outputElement.textContent = processedContent;
+                } catch (error) {
+                    errorMessage.textContent = 'Error processing document';
+                }
             }
 
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                outputContent.textContent = `File "${file.name}" has been processed. Size: ${file.size} bytes.`;
-            };
-            
-            reader.readAsText(file);
+            // Clear all inputs and outputs
+            clearButton.addEventListener('click', function() {
+                documentInput.value = '';
+                outputElement.textContent = 'Processed output will appear here...';
+                errorMessage.textContent = '';
+                documentInput.focus();
+            });
+
+            // Process button click handler
+            processButton.addEventListener('click', processDocument);
+
+            // Copy to clipboard functionality
+            copyButton.addEventListener('click', function() {
+                const textToCopy = outputElement.textContent;
+                if (textToCopy && textToCopy !== 'Processed output will appear here...') {
+                    navigator.clipboard.writeText(textToCopy)
+                        .then(() => {
+                            // Visual feedback
+                            const originalText = copyButton.textContent;
+                            copyButton.textContent = 'Copied!';
+                            setTimeout(() => {
+                                copyButton.textContent = originalText;
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                        });
+                }
+            });
+
+            // Handle Enter key in textarea
+            documentInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    processDocument();
+                }
+            });
+
+            // Focus the textarea on load
+            documentInput.focus();
         });
     </script>
-</body>
-</html>
         </div>
         <div class="gt-ad" id="ad-bottom">
             <!-- AdSense slot -->

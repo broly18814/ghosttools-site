@@ -52,157 +52,249 @@
             <!-- AdSense slot -->
         </div>
         <div class="gt-body">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI PR Time Analyzer</title>
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #4a90e2;
-        }
+            <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --accent: #6366f1;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-        body {
-            margin: 0;
-            font-family: system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 20px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1e1e2f;
-                --text-color: #f0f0f0;
-                --accent-color: #6e90f5;
-            }
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px;
+    }
 
-        h1 {
-            margin: 0 0 10px 0;
-            font-size: 1.5em;
-        }
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
 
-        p {
-            margin: 0 0 20px 0;
-            font-size: 0.95em;
-            color: #555;
-        }
+    .description {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
 
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 12px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            resize: vertical;
-            box-sizing: border-box;
-        }
+    .input-group {
+      margin-bottom: 16px;
+    }
 
-        button {
-            padding: 12px;
-            margin-top: 15px;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
 
-        button:hover {
-            background-color: #357ae8;
-        }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--surface);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.15s ease;
+    }
 
-        #outputArea {
-            margin-top: 20px;
-            width: 100%;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            overflow-x: auto;
-        }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
 
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-start;
-            }
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
 
-            textarea {
-                flex: 1;
-                margin-right: 20px;
-            }
+    button:hover {
+      background-color: #585df2;
+    }
 
-            #outputArea {
-                flex: 1;
-                margin-left: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>AI PR Time Analyzer</h1>
-        <p>Analyzes time spent on AI-generated PR reviews and identifies synthetic vulnerabilities</p>
-        <textarea id="inputArea" placeholder="Paste your PR review text here..."></textarea>
-        <button onclick="analyze()">Analyze</button>
-        <div id="outputArea"></div>
+    .output-area {
+      background-color: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      min-height: 80px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .error {
+      color: #f87171;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .copy-btn {
+      margin-top: 12px;
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        padding: 16px;
+      }
+    }
+  </style>
+<div class="container">
+    <h1>AI PR Time Analyzer</h1>
+    <p class="description">Analyze time spent on AI-generated PR reviews and identify synthetic vulnerabilities</p>
+
+    <div class="input-group">
+      <label for="timeSpent">Time Spent on Review (minutes)</label>
+      <input type="number" id="timeSpent" placeholder="Enter time in minutes" aria-label="Time spent on review in minutes">
     </div>
 
-    <script>
-        function analyze() {
-            const input = document.getElementById('inputArea').value;
-            const output = document.getElementById('outputArea');
-            output.innerHTML = '';
+    <div class="input-group">
+      <label for="prSize">PR Size (lines of code)</label>
+      <input type="number" id="prSize" placeholder="Enter lines of code" aria-label="PR size in lines of code">
+    </div>
 
-            if (!input.trim()) {
-                output.innerHTML = '<p style="color: #d32f2f;">Please paste your PR review text to analyze.</p>';
-                return;
-            }
+    <div class="input-group">
+      <label for="aiTools">AI Tools Used</label>
+      <input type="text" id="aiTools" placeholder="e.g., GitHub Copilot, ChatGPT" aria-label="AI tools used">
+    </div>
 
-            // Simulate time analysis (word count as proxy for time spent)
-            const wordCount = input.trim().split(/\s+/).length;
-            const timeSpent = Math.round(wordCount / 200 * 60); // 200 words per minute
+    <div class="input-group">
+      <label for="vulnerabilities">Detected Vulnerabilities</label>
+      <textarea id="vulnerabilities" rows="3" placeholder="List detected vulnerabilities" aria-label="Detected vulnerabilities"></textarea>
+    </div>
 
-            // Detect synthetic vulnerability markers
-            const aiMarkers = ['AI-generated', 'synthetic', 'vulnerability', 'time spent'];
-            const markersFound = aiMarkers.filter(marker => input.toLowerCase().includes(marker.toLowerCase()));
+    <button id="analyzeBtn">Analyze</button>
 
-            let report = `<h2>Analysis Results</h2>`;
-            report += `<p><strong>Time Spent:</strong> ${timeSpent} minutes</p>`;
-            report += `<p><strong>Detected Synthetic Vulnerability Indicators:</strong></p>`;
-            if (markersFound.length > 0) {
-                markersFound.forEach(marker => {
-                    report += `<p>- ${marker}</p>`;
-                });
-            } else {
-                report += `<p>- None detected</p>`;
-            }
+    <div class="output-area" id="outputArea">
+      Results will appear here
+    </div>
 
-            output.innerHTML = report;
+    <button id="copyBtn" class="copy-btn" style="display: none;">Copy Result</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const analyzeBtn = document.getElementById('analyzeBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const outputArea = document.getElementById('outputArea');
+      const timeSpentInput = document.getElementById('timeSpent');
+      const prSizeInput = document.getElementById('prSize');
+      const aiToolsInput = document.getElementById('aiTools');
+      const vulnerabilitiesInput = document.getElementById('vulnerabilities');
+
+      // Helper function to validate inputs
+      function validateInputs(timeSpent, prSize) {
+        if (timeSpent === null || timeSpent === '' || isNaN(timeSpent) || timeSpent <= 0) {
+          return 'Please enter a valid positive number for time spent.';
         }
-    </script>
-</body>
-</html>
+        if (prSize === null || prSize === '' || isNaN(prSize) || prSize <= 0) {
+          return 'Please enter a valid positive number for PR size.';
+        }
+        return null;
+      }
+
+      // Analyze PR function with complete implementation
+      function analyzePR(timeSpent, prSize, aiTools, vulnerabilities) {
+        // Validate inputs
+        const validationError = validateInputs(timeSpent, prSize);
+        if (validationError) {
+          return validationError;
+        }
+
+        // Prevent division by zero
+        if (prSize === 0) {
+          return 'Error: PR size cannot be zero.';
+        }
+
+        // Calculate time per line
+        const timePerLine = timeSpent / prSize;
+
+        // Vulnerabilities handling
+        let vulnerabilityAnalysis = '';
+        if (vulnerabilities && vulnerabilities.trim() !== '') {
+          const vulns = vulnerabilities.split('\n').filter(v => v.trim() !== '');
+          vulnerabilityAnalysis = `Detected ${vulns.length} vulnerability(ies):\n`;
+          vulns.forEach(vuln => {
+            vulnerabilityAnalysis += `- ${vuln.trim()}\n`;
+          });
+        } else {
+          vulnerabilityAnalysis = 'No vulnerabilities detected.';
+        }
+
+        // AI tools analysis
+        let aiAnalysis = '';
+        if (aiTools && aiTools.trim() !== '') {
+          aiAnalysis = `AI Tools Used: ${aiTools.trim()}\n`;
+        } else {
+          aiAnalysis = 'No AI tools specified.\n';
+        }
+
+        // Generate result
+        const result = `AI PR Analysis Results:
+${aiAnalysis}
+Time Spent: ${timeSpent} minutes
+PR Size: ${prSize} lines
+Time per Line: ${timePerLine.toFixed(2)} minutes/line
+
+${vulnerabilityAnalysis}`;
+
+        return result;
+      }
+
+      // Handle analyze button click
+      analyzeBtn.addEventListener('click', () => {
+        const timeSpent = parseFloat(timeSpentInput.value);
+        const prSize = parseFloat(prSizeInput.value);
+        const aiTools = aiToolsInput.value;
+        const vulnerabilities = vulnerabilitiesInput.value;
+
+        const result = analyzePR(timeSpent, prSize, aiTools, vulnerabilities);
+        outputArea.textContent = result;
+        copyBtn.style.display = 'inline-block';
+      });
+
+      // Handle copy button click
+      copyBtn.addEventListener('click', () => {
+        const textToCopy = outputArea.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+          }, 2000);
+        });
+      });
+    });
+  </script>
         </div>
         <div class="gt-ad" id="ad-bottom">
             <!-- AdSense slot -->
