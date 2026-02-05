@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-ghosttools-wrapped>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Unit Converter — GhostTools</title>
+    <meta name="description" content="A developer-focused tool for converting units like pixels to rem, hex to RGB, and timestamps to dates. Free browser tool, no signup.">
+    <meta property="og:title" content="Developer Unit Converter — GhostTools">
+    <meta property="og:description" content="A developer-focused tool for converting units like pixels to rem, hex to RGB, and timestamps to dates.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://broly18814.github.io/ghosttools-site/tools/developer-unit-converter/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚙</text></svg>">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Developer Unit Converter","description":"A developer-focused tool for converting units like pixels to rem, hex to RGB, and timestamps to dates.","url":"https://broly18814.github.io/ghosttools-site/tools/developer-unit-converter/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3415356827179229" crossorigin="anonymous"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fafafa;color:#222;-webkit-font-smoothing:antialiased}
+        .gt-bar{background:#fff;border-bottom:1px solid #e5e5e5;padding:10px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+        .gt-bar .brand{font-weight:700;font-size:14px;color:#111;text-decoration:none}
+        .gt-bar .sep{color:#ccc}
+        .gt-bar .back{font-size:13px;color:#666;text-decoration:none}
+        .gt-bar .back:hover{color:#222}
+        .gt-main{max-width:800px;margin:0 auto;padding:20px}
+        .gt-head{margin-bottom:16px}
+        .gt-head h1{font-size:18px;font-weight:700;color:#111;margin-bottom:2px}
+        .gt-head p{font-size:13px;color:#888}
+        .gt-ad{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:12px;margin-bottom:16px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+        .gt-body{background:#fff;border:1px solid #e5e5e5;border-radius:6px;padding:24px;margin-bottom:16px}
+        .gt-foot{text-align:center;padding:24px;font-size:12px;color:#999}
+        .gt-foot a{color:#666;text-decoration:underline}
+        @media(max-width:600px){
+            .gt-bar{padding:10px 16px}
+            .gt-main{padding:12px}
+            .gt-body{padding:16px}
+        }
+    </style>
+</head>
+<body>
+    <nav class="gt-bar">
+        <a class="brand" href="../../">ghosttools</a>
+        <span class="sep">/</span>
+        <a class="back" href="../../">all tools</a>
+    </nav>
+    <div class="gt-main">
+        <div class="gt-head">
+            <h1>Developer Unit Converter</h1>
+            <p>A developer-focused tool for converting units like pixels to rem, hex to RGB, and timestamps to dates.</p>
+        </div>
+        <div class="gt-ad" id="ad-top">
+            <!-- AdSense slot -->
+        </div>
+        <div class="gt-body">
+            <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --accent: #60a5fa;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --error: #f87171;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 600px;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--surface);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #3b82f6;
+    }
+
+    .output-area {
+      background-color: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      min-height: 80px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .copy-btn {
+      margin-top: 12px;
+      background-color: rgba(96, 165, 250, 0.2);
+      padding: 8px 16px;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(96, 165, 250, 0.3);
+    }
+    
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    legend {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+  </style>
+<main>
+    <h1>Developer Unit Converter</h1>
+    <p>Convert pixels to rem, hex to RGB, and timestamps to dates</p>
+
+    <fieldset>
+      <legend>Input</legend>
+      <div class="input-group">
+        <label for="input-value">Input Value</label>
+        <input type="text" id="input-value" placeholder="Enter value to convert">
+      </div>
+
+      <div class="input-group">
+        <label for="conversion-type">Conversion Type</label>
+        <select id="conversion-type">
+          <option value="px-to-rem">Pixels to Rem</option>
+          <option value="hex-to-rgb">Hex to RGB</option>
+          <option value="timestamp-to-date">Timestamp to Date</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <div class="button-group">
+      <button id="convert-btn" aria-label="Convert input value">Convert</button>
+      <button id="clear-btn" aria-label="Clear all inputs and results">Clear</button>
+    </div>
+
+    <div class="output-area" id="output-area" role="region" aria-live="polite">
+      Result will appear here
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputValue = document.getElementById('input-value');
+      const conversionType = document.getElementById('conversion-type');
+      const convertBtn = document.getElementById('convert-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const outputArea = document.getElementById('output-area');
+
+      convertBtn.addEventListener('click', convert);
+      clearBtn.addEventListener('click', clear);
+
+      function convert() {
+        const value = inputValue.value.trim();
+        const type = conversionType.value;
+        let result = '';
+
+        if (!value) {
+          outputArea.innerHTML = '<span class="error">Please enter a value to convert</span>';
+          return;
+        }
+
+        try {
+          switch (type) {
+            case 'px-to-rem':
+              const pxValue = parseFloat(value);
+              if (isNaN(pxValue)) {
+                throw new Error('Invalid pixel value');
+              }
+              result = `${pxValue}px = ${pxValue / 16}rem`;
+              break;
+              
+            case 'hex-to-rgb':
+              if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(value)) {
+                throw new Error('Invalid hex color format');
+              }
+              const hex = value.replace('#', '');
+              let r, g, b;
+              
+              if (hex.length === 3) {
+                r = parseInt(hex[0] + hex[0], 16);
+                g = parseInt(hex[1] + hex[1], 16);
+                b = parseInt(hex[2] + hex[2], 16);
+              } else {
+                r = parseInt(hex.substring(0, 2), 16);
+                g = parseInt(hex.substring(2, 4), 16);
+                b = parseInt(hex.substring(4, 6), 16);
+              }
+              result = `#${value} = rgb(${r}, ${g}, ${b})`;
+              break;
+              
+            case 'timestamp-to-date':
+              const timestamp = parseFloat(value);
+              if (isNaN(timestamp)) {
+                throw new Error('Invalid timestamp');
+              }
+              
+              // Handle negative timestamps or invalid dates
+              if (timestamp < 0) {
+                throw new Error('Timestamp cannot be negative');
+              }
+              
+              const date = new Date(timestamp * 1000);
+              if (date.toString() === 'Invalid Date') {
+                throw new Error('Invalid date format');
+              }
+              
+              result = `${timestamp} = ${date.toISOString().slice(0, 19).replace('T', ' ')}`;
+              break;
+              
+            default:
+              throw new Error('Unknown conversion type');
+          }
+          
+          // Create copy button safely
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'copy-btn';
+          copyBtn.textContent = 'Copy Result';
+          copyBtn.setAttribute('aria-label', 'Copy result to clipboard');
+          copyBtn.addEventListener('click', () => copyToClipboard(result));
+          
+          // Clear previous content and add new content
+          outputArea.innerHTML = '';
+          outputArea.appendChild(document.createTextNode(result));
+          outputArea.appendChild(copyBtn);
+          
+        } catch (error) {
+          outputArea.innerHTML = `<span class="error">${error.message}</span>`;
+        }
+      }
+
+      function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        textarea.style.top = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        // Show feedback
+        const originalText = outputArea.innerHTML;
+        outputArea.innerHTML = '<span style="color: #60a5fa;">Copied to clipboard!</span>';
+        setTimeout(() => {
+          outputArea.innerHTML = originalText;
+        }, 2000);
+      }
+
+      function clear() {
+        inputValue.value = '';
+        conversionType.value = 'px-to-rem';
+        outputArea.innerHTML = 'Result will appear here';
+      }
+    });
+  </script>
+        </div>
+        <div class="gt-ad" id="ad-bottom">
+            <!-- AdSense slot -->
+        </div>
+        <div class="gt-foot">
+            <a href="../../">Browse all tools</a>
+        </div>
+    </div>
+</body>
+</html>

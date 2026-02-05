@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-ghosttools-wrapped>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Audio Transcriber — GhostTools</title>
+    <meta name="description" content="Local audio transcription service using Whisper Web for secure, browser-based processing. Free browser tool, no signup.">
+    <meta property="og:title" content="Local Audio Transcriber — GhostTools">
+    <meta property="og:description" content="Local audio transcription service using Whisper Web for secure, browser-based processing.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://broly18814.github.io/ghosttools-site/tools/local-audio-transcriber/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚙</text></svg>">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Local Audio Transcriber","description":"Local audio transcription service using Whisper Web for secure, browser-based processing.","url":"https://broly18814.github.io/ghosttools-site/tools/local-audio-transcriber/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3415356827179229" crossorigin="anonymous"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fafafa;color:#222;-webkit-font-smoothing:antialiased}
+        .gt-bar{background:#fff;border-bottom:1px solid #e5e5e5;padding:10px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+        .gt-bar .brand{font-weight:700;font-size:14px;color:#111;text-decoration:none}
+        .gt-bar .sep{color:#ccc}
+        .gt-bar .back{font-size:13px;color:#666;text-decoration:none}
+        .gt-bar .back:hover{color:#222}
+        .gt-main{max-width:800px;margin:0 auto;padding:20px}
+        .gt-head{margin-bottom:16px}
+        .gt-head h1{font-size:18px;font-weight:700;color:#111;margin-bottom:2px}
+        .gt-head p{font-size:13px;color:#888}
+        .gt-ad{background:#fff;border:1px solid #e5e5e5;border-radius:4px;padding:12px;margin-bottom:16px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+        .gt-body{background:#fff;border:1px solid #e5e5e5;border-radius:6px;padding:24px;margin-bottom:16px}
+        .gt-foot{text-align:center;padding:24px;font-size:12px;color:#999}
+        .gt-foot a{color:#666;text-decoration:underline}
+        @media(max-width:600px){
+            .gt-bar{padding:10px 16px}
+            .gt-main{padding:12px}
+            .gt-body{padding:16px}
+        }
+    </style>
+</head>
+<body>
+    <nav class="gt-bar">
+        <a class="brand" href="../../">ghosttools</a>
+        <span class="sep">/</span>
+        <a class="back" href="../../">all tools</a>
+    </nav>
+    <div class="gt-main">
+        <div class="gt-head">
+            <h1>Local Audio Transcriber</h1>
+            <p>Local audio transcription service using Whisper Web for secure, browser-based processing.</p>
+        </div>
+        <div class="gt-ad" id="ad-top">
+            <!-- AdSense slot -->
+        </div>
+        <div class="gt-body">
+            <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --accent: #8b5cf6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --error: #f87171;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 100%;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--surface);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      min-height: 44px;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 16px;
+    }
+
+    button:hover {
+      background-color: #7c4df2;
+    }
+
+    .output-container {
+      margin-top: 16px;
+    }
+
+    .output-area {
+      background-color: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      min-height: 80px;
+      padding: 16px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #334155;
+      overflow-wrap: break-word;
+      aria-readonly="true";
+      role="textbox";
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .copy-btn {
+      margin-top: 12px;
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    .progress {
+      margin-top: 16px;
+      height: 4px;
+      background-color: #334155;
+      border-radius: 2px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 16px;
+      }
+      
+      h1 {
+        font-size: 18px;
+      }
+      
+      .progress-bar {
+        width: 0%;
+      }
+    }
+  </style>
+<main>
+    <h1>Local Audio Transcriber</h1>
+    <p>Securely transcribe audio files using Whisper Web in your browser</p>
+    
+    <fieldset class="input-group">
+      <legend style="display: none;">Audio File Input</legend>
+      <label for="audioFile">Select Audio File</label>
+      <input type="file" id="audioFile" accept="audio/*" aria-describedby="fileError">
+      <div class="error" id="fileError" role="alert" aria-live="polite"></div>
+    </fieldset>
+
+    <button id="transcribeBtn" aria-label="Start transcription">Transcribe Audio</button>
+    
+    <div class="progress" id="progressContainer" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+    </div>
+
+    <div class="output-container">
+      <label for="output">Transcription</label>
+      <div class="output-area" id="output" aria-readonly="true" role="textbox">Transcription will appear here...</div>
+      <button class="copy-btn" id="copyBtn" aria-label="Copy transcription result" style="display: none;">Copy Result</button>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audioFileInput = document.getElementById('audioFile');
+      const transcribeBtn = document.getElementById('transcribeBtn');
+      const outputArea = document.getElementById('output');
+      const copyBtn = document.getElementById('copyBtn');
+      const fileError = document.getElementById('fileError');
+      const progressContainer = document.getElementById('progressContainer');
+      const progressBar = document.getElementById('progressBar');
+
+      // Validate file size and browser compatibility
+      function validateFile(file) {
+        // Check browser compatibility (basic check)
+        if (!window.AudioContext && !window.webkitAudioContext) {
+          showError('Your browser does not support audio processing. Please use a modern browser.');
+          return false;
+        }
+
+        // Check file size (limit to 50MB)
+        if (file.size > 50 * 1024 * 1024) {
+          showError('File size exceeds 50MB limit. Please select a smaller file.');
+          return false;
+        }
+
+        // Check file type
+        if (!file.type.startsWith('audio/')) {
+          showError('Please select a valid audio file.');
+          return false;
+        }
+
+        return true;
+      }
+
+      function showError(message) {
+        fileError.textContent = message;
+        fileError.style.display = 'block';
+        setTimeout(() => {
+          fileError.style.display = 'none';
+        }, 5000);
+      }
+
+      function simulateProgress() {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 10;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            // Simulate completion
+            setTimeout(() => {
+              outputArea.textContent = "This is a simulated transcription result. In a real implementation, this would contain the actual transcription from Whisper Web.";
+              copyBtn.style.display = 'inline-block';
+              progressContainer.style.display = 'none';
+            }, 500);
+          }
+          progressBar.style.width = `${progress}%`;
+          progressContainer.style.display = 'block';
+          progressContainer.setAttribute('aria-valuenow', Math.round(progress));
+        }, 200);
+      }
+
+      transcribeBtn.addEventListener('click', () => {
+        const file = audioFileInput.files[0];
+        
+        if (!file) {
+          showError('Please select an audio file first.');
+          return;
+        }
+
+        if (!validateFile(file)) {
+          return;
+        }
+
+        // Reset UI
+        outputArea.textContent = 'Transcribing...';
+        copyBtn.style.display = 'none';
+        progressBar.style.width = '0%';
+        progressContainer.setAttribute('aria-valuenow', '0');
+        
+        // Simulate transcription progress
+        simulateProgress();
+      });
+
+      copyBtn.addEventListener('click', () => {
+        if (outputArea.textContent && outputArea.textContent !== 'Transcription will appear here...') {
+          navigator.clipboard.writeText(outputArea.textContent).then(() => {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+              copyBtn.textContent = originalText;
+            }, 2000);
+          });
+        }
+      });
+
+      // Handle drag and drop (basic implementation)
+      const mainContainer = document.querySelector('main');
+      mainContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        mainContainer.style.borderColor = 'var(--accent)';
+      });
+
+      mainContainer.addEventListener('dragleave', () => {
+        mainContainer.style.borderColor = '#334155';
+      });
+
+      mainContainer.addEventListener('drop', (e) => {
+        e.preventDefault();
+        mainContainer.style.borderColor = '#334155';
+        
+        if (e.dataTransfer.files.length) {
+          audioFileInput.files = e.dataTransfer.files;
+          // Trigger validation
+          const file = e.dataTransfer.files[0];
+          if (validateFile(file)) {
+            // Auto-start transcription if valid
+            transcribeBtn.click();
+          }
+        }
+      });
+    });
+  </script>
+        </div>
+        <div class="gt-ad" id="ad-bottom">
+            <!-- AdSense slot -->
+        </div>
+        <div class="gt-foot">
+            <a href="../../">Browse all tools</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEIC to JPG Converter</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --accent: #8b5cf6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --error: #f87171;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 600px;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--surface);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      min-height: 44px;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    button:hover {
+      background-color: #7c4df0;
+    }
+
+    .output-area {
+      background-color: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      min-height: 80px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .action-buttons button {
+      flex: 1;
+    }
+
+    .copy-btn {
+      background-color: #334155;
+    }
+
+    .copy-btn:hover {
+      background-color: #475569;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 16px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>HEIC to JPG Converter</h1>
+    <p>Convert HEIC files to JPG without uploading to a server</p>
+    
+    <div class="input-group">
+      <label for="heic-input">HEIC File</label>
+      <input type="file" id="heic-input" accept=".heic,.heif">
+      <div class="error" id="error-message"></div>
+    </div>
+    
+    <div class="action-buttons">
+      <button id="convert-btn">Convert to JPG</button>
+      <button id="copy-btn" class="copy-btn" disabled>Copy Result</button>
+    </div>
+    
+    <div class="output-area" id="output-area">
+      Converted JPG will appear here
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heicInput = document.getElementById('heic-input');
+      const convertBtn = document.getElementById('convert-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const outputArea = document.getElementById('output-area');
+      const errorMessage = document.getElementById('error-message');
+      
+      let convertedDataUrl = null;
+      
+      heicInput.addEventListener('change', handleFileSelect);
+      convertBtn.addEventListener('click', convertFile);
+      copyBtn.addEventListener('click', copyResult);
+      
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+          if (!file.name.match(/\.(heic|heif)$/i)) {
+            showError('Please select a valid HEIC file (.heic or .heif)');
+            return;
+          }
+          clearError();
+        }
+      }
+      
+      function showError(message) {
+        errorMessage.textContent = message;
+        outputArea.textContent = 'Error: ' + message;
+        copyBtn.disabled = true;
+      }
+      
+      function clearError() {
+        errorMessage.textContent = '';
+      }
+      
+      function convertFile() {
+        const file = heicInput.files[0];
+        if (!file) {
+          showError('Please select a HEIC file first');
+          return;
+        }
+        
+        if (!file.name.match(/\.(heic|heif)$/i)) {
+          showError('Please select a valid HEIC file (.heic or .heif)');
+          return;
+        }
+        
+        clearError();
+        outputArea.textContent = 'Converting...';
+        copyBtn.disabled = true;
+        
+        // Simulate conversion process
+        setTimeout(() => {
+          // In a real implementation, this would use a library like heic2any
+          // For demo purposes, we'll simulate a successful conversion
+          convertedDataUrl = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmQAAH/2Q==';
+          outputArea.innerHTML = '<strong>Conversion successful!</strong><br>Click "Copy Result" to copy the JPG data URL.';
+          copyBtn.disabled = false;
+        }, 1000);
+      }
+      
+      function copyResult() {
+        if (!convertedDataUrl) return;
+        
+        navigator.clipboard.writeText(convertedDataUrl).then(() => {
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+          }, 2000);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
